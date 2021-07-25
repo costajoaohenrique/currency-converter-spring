@@ -1,17 +1,13 @@
 package com.currency.converter.domain;
 
-import lombok.Builder;
+import com.currency.converter.dto.TransactionRequestDTO;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Value;
 
 import javax.persistence.Entity;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Getter
+@Data
 @Entity
 public class Transaction {
 
@@ -25,7 +21,7 @@ public class Transaction {
 
     private Currency destinationCurrency;
 
-    private BigDecimal convertionRate;
+    private BigDecimal conversionRate;
 
     private LocalDateTime transactionDate;
 
@@ -35,18 +31,26 @@ public class Transaction {
                        Currency originCurrency,
                        BigDecimal originalValue,
                        Currency destinationCurrency,
-                       BigDecimal convertionRate) {
+                       BigDecimal conversionRate) {
         this.idUser = idUser;
         this.originCurrency = originCurrency;
         this.originalValue = originalValue;
         this.destinationCurrency = destinationCurrency;
-        this.convertionRate = convertionRate;
+        this.conversionRate = conversionRate;
         this.transactionDate = LocalDateTime.now();
         this.destinationValue = convertToDestinationValue();
     }
 
-    private BigDecimal convertToDestinationValue(){
-        return originalValue.multiply(convertionRate);
+    public static Transaction createTransaction(TransactionRequestDTO transactionDTO, BigDecimal conversionRate) {
+        return   new Transaction(transactionDTO.getIdUser(),
+                transactionDTO.getOriginCurrency(),
+                transactionDTO.getOriginalValue(),
+                transactionDTO.getDestinationCurrency(),
+                conversionRate);
+    }
+
+    private BigDecimal convertToDestinationValue() {
+        return originalValue.multiply(conversionRate);
     }
 
 }
