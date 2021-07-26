@@ -17,9 +17,9 @@ public class TransactionTest {
         var originCurrency = Currency.BRL;
         var originalValue = new BigDecimal(25);
         var destinationCurrency = Currency.USD;
-        var convertionRate = new BigDecimal("0.19140121");
+        var conversionRate = new BigDecimal("0.19140121");
         //WHEN
-        Transaction transaction = new Transaction(idUser,originCurrency,originalValue,destinationCurrency,convertionRate);
+        Transaction transaction = new Transaction(idUser,originCurrency,originalValue,destinationCurrency,conversionRate);
         //THEN
         assertThat(transaction.getDestinationValue()).isEqualByComparingTo(new BigDecimal("4.78503025"));
     }
@@ -32,9 +32,9 @@ public class TransactionTest {
         var originCurrency = Currency.BRL;
         var originalValue = new BigDecimal(25);
         var destinationCurrency = Currency.USD;
-        var convertionRate = new BigDecimal("5.213412");
+        var conversionRate = new BigDecimal("5.213412");
         //WHEN
-        Transaction transaction = new Transaction(idUser,originCurrency,originalValue,destinationCurrency,convertionRate);
+        Transaction transaction = new Transaction(idUser,originCurrency,originalValue,destinationCurrency,conversionRate);
         //THEN
         assertThat(transaction.getDestinationValue()).isEqualByComparingTo(new BigDecimal("130.3353"));
     }

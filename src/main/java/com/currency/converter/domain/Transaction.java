@@ -3,14 +3,18 @@ package com.currency.converter.domain;
 import com.currency.converter.dto.TransactionRequestDTO;
 import lombok.Data;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Data
 @Entity
+@Table(name = "tb_transaction")
 public class Transaction {
 
+    @Id  @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     private Long idUser;
@@ -25,7 +29,10 @@ public class Transaction {
 
     private LocalDateTime transactionDate;
 
+    @Transient
     private BigDecimal destinationValue;
+
+    public Transaction(){};
 
     public Transaction(Long idUser,
                        Currency originCurrency,

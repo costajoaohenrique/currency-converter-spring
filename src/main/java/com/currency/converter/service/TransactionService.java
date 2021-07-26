@@ -6,6 +6,7 @@ import com.currency.converter.domain.Transaction;
 import com.currency.converter.dto.TransactionRequestDTO;
 import com.currency.converter.dto.TransactionResponseDTO;
 import com.currency.converter.facade.ExchangeRateFacade;
+import com.currency.converter.repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -18,19 +19,23 @@ public class TransactionService {
 
     private ConversionRateCalculator conversionRateCalculator;
 
+    private TransactionRepository repository;
+
     public TransactionService(ExchangeRateFacade exchangeRateFacade,
-                              ConversionRateCalculator conversionRateCalculator) {
+                              ConversionRateCalculator conversionRateCalculator,
+                              TransactionRepository repository) {
         this.exchangeRateFacade = exchangeRateFacade;
         this.conversionRateCalculator = conversionRateCalculator;
+        this.repository = repository;
     }
 
-    public TransactionResponseDTO createTransaction(TransactionRequestDTO transactionRequestDTO){
-        Map<Currency, BigDecimal> rates = exchangeRateFacade.getRates();
-        BigDecimal convertionRate = conversionRateCalculator.calculate(transactionRequestDTO.getOriginCurrency(),
+    public TransactionResponseDTO createTransaction(TransactionRequestDTO transactionRequestDTO) {
+        var rates = exchangeRateFacade.getRates();
+        var conversionRate = conversionRateCalculator.calculate(transactionRequestDTO.getOriginCurrency(),
                 transactionRequestDTO.getDestinationCurrency(), rates);
 
-        Transaction transaction = Transaction.createTransaction(transactionRequestDTO, convertionRate);
-        transaction.setId(1l);
+        var transaction = Transaction.createTransaction(transactionRequestDTO, conversionRate);
+        transaction = repository.save(transaction);
 
         return new TransactionResponseDTO(transaction);
     }
