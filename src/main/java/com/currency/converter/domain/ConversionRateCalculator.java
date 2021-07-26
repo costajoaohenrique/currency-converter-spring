@@ -1,11 +1,15 @@
 package com.currency.converter.domain;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
 import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+@Component
 public class ConversionRateCalculator {
 
     public BigDecimal calculate(Currency origin,
