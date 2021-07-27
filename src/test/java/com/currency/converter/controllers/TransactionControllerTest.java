@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.math.BigDecimal;
 
+import static com.currency.converter.controllers.JsonUtils.asJson;
 import static com.currency.converter.domain.Currency.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -54,34 +55,6 @@ public class TransactionControllerTest {
 
     }
 
-    @Test
-    @DisplayName("Should not save transaction with null fields")
-    public void shouldNotSaveTransactionWithNullFields() throws Exception {
-        //GIVEN
-        var originCurrency = Currency.BRL;
-        var originalValue = new BigDecimal(25);
-        var destinationCurrency = Currency.USD;
-        var transactionRequest = new TransactionRequestDTO (
-                null,
-                originCurrency,
-                originalValue,
-                destinationCurrency);
-        //WHEN
-        ResultActions result = mockMvc.perform(post("/transactions")
-                .content(asJson(transactionRequest))
-                .contentType(MediaType.APPLICATION_JSON));
-        //THEN
-        result.andExpect(status().isCreated());
-
-    }
-
-    private static String asJson(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 
 

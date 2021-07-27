@@ -1,21 +1,20 @@
 package com.currency.converter.repositories;
 
-import com.currency.converter.domain.Currency;
 import com.currency.converter.domain.Transaction;
-import com.currency.converter.facade.ExchangeRateFacade;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import static com.currency.converter.domain.Currency.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class TransactionRepositoryTest {
 
     @Autowired

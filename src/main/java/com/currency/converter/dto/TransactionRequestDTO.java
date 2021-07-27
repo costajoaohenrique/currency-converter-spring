@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ public class TransactionRequestDTO {
     private Currency originCurrency;
 
     @NotNull
+    @DecimalMin(value = "0.0", inclusive = false)
     private BigDecimal originalValue;
 
     @NotNull

@@ -1,6 +1,5 @@
 package com.currency.converter.service;
 
-import com.currency.converter.domain.Currency;
 import com.currency.converter.domain.ConversionRateCalculator;
 import com.currency.converter.domain.Transaction;
 import com.currency.converter.dto.TransactionRequestDTO;
@@ -10,9 +9,7 @@ import com.currency.converter.repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service

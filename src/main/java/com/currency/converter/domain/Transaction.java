@@ -2,11 +2,15 @@ package com.currency.converter.domain;
 
 import com.currency.converter.dto.TransactionRequestDTO;
 import lombok.Data;
+import org.springframework.util.ObjectUtils;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
@@ -60,6 +64,13 @@ public class Transaction {
 
     private BigDecimal convertToDestinationValue() {
         return originalValue.multiply(conversionRate);
+    }
+
+    public BigDecimal getDestinationValue(){
+        if(isNull(destinationValue) && nonNull(originalValue) && nonNull(conversionRate) ){
+            this.destinationValue = convertToDestinationValue();
+        }
+        return this.destinationValue;
     }
 
 }
