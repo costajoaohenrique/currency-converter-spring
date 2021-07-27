@@ -18,7 +18,7 @@ public class ConversionRateCalculator {
         var rateOrigin = rates.get(origin);
         var rateDestination = rates.get(destination);
 
-        return rateOrigin.divide(rateDestination,MathContext.DECIMAL64);
+        return rateDestination.divide(rateOrigin,MathContext.DECIMAL64);
     }
 
 }

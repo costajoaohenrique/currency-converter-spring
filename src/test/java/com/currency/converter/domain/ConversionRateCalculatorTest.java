@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class ConversionRateCalculatorTest {
@@ -35,7 +34,7 @@ public class ConversionRateCalculatorTest {
         //WHEN
         var rate = conversionRateCalculator.calculate(currencyOrigin, currencyDestination, rates);
         //THEN
-        assertThat(rate).isEqualByComparingTo(new BigDecimal("5.252899860033083"));
+        assertThat(rate).isEqualByComparingTo(new BigDecimal("0.1903710382161563"));
     }
 
     @Test
@@ -47,7 +46,7 @@ public class ConversionRateCalculatorTest {
         //WHEN
         var rate = conversionRateCalculator.calculate(currencyOrigin, currencyDestination, rates);
         //THEN
-        assertThat(rate).isEqualByComparingTo(new BigDecimal("109.4660313016923"));
+        assertThat(rate).isEqualByComparingTo(new BigDecimal("0.009135253997141488"));
     }
 
     @Test
@@ -59,7 +58,7 @@ public class ConversionRateCalculatorTest {
         //WHEN
         var rate = conversionRateCalculator.calculate(currencyOrigin, currencyDestination, rates);
         //THEN
-        assertThat(rate).isEqualByComparingTo(new BigDecimal("129.044031"));
+        assertThat(rate).isEqualByComparingTo(new BigDecimal("0.007749292952573685"));
     }
 
 
