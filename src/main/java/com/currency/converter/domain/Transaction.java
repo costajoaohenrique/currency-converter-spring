@@ -11,7 +11,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
 @Entity
-@Table(name = "tb_transaction")
+@Table(name = "TB_TRANSACTION")
 public class Transaction {
 
     @Id  @GeneratedValue(strategy = IDENTITY)
@@ -19,10 +19,12 @@ public class Transaction {
 
     private Long idUser;
 
+    @Enumerated(value = EnumType.STRING)
     private Currency originCurrency;
 
     private BigDecimal originalValue;
 
+    @Enumerated(value = EnumType.STRING)
     private Currency destinationCurrency;
 
     private BigDecimal conversionRate;

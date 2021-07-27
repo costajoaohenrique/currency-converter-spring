@@ -1,11 +1,11 @@
-create table tb_transaction (
+create table TB_TRANSACTION (
     id bigint not null auto_increment,
-    idUser bigint not null,
-    originCurrency varchar(3) not null,
-    originalValue decimal(5, 16) not null,
-    destinationCurrency varchar(3) not null,
-    conversionRate decimal(5, 16) not null,
-    transactionDate datetime not null,
-    primary key(id)
+    ID_USER bigint not null,
+    ORIGIN_CURRENCY varchar(3) not null,
+    ORIGINAL_VALUE decimal(10, 6) not null,
+    DESTINATION_CURRENCY varchar(3) not null,
+    CONVERSION_RATE decimal(10, 6) not null,
+    TRANSACTION_DATE timestamp not null,
+    primary key (id)
 );
 
