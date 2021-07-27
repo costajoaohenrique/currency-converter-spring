@@ -50,7 +50,7 @@ public class TransactionRepositoryTest {
         repository.save(transactionSecond);
         repository.save(transactionThird);
         repository.save(transactionFourth);
-        var transactionsFoundByIdUser = repository.getByIdUser(idUser);
+        var transactionsFoundByIdUser = repository.findByIdUser(idUser);
         //THEN
         assertTrue(transactionsFoundByIdUser.size() == 2);
     }

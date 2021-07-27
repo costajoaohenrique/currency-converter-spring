@@ -9,8 +9,11 @@ import com.currency.converter.facade.ExchangeRateFacade;
 import com.currency.converter.repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
@@ -29,15 +32,31 @@ public class TransactionService {
         this.repository = repository;
     }
 
+    @Transactional
     public TransactionResponseDTO createTransaction(TransactionRequestDTO transactionRequestDTO) {
         var rates = exchangeRateFacade.getRates();
         var conversionRate = conversionRateCalculator.calculate(transactionRequestDTO.getOriginCurrency(),
                 transactionRequestDTO.getDestinationCurrency(), rates);
 
-        var transaction = Transaction.createTransaction(transactionRequestDTO, conversionRate);
+        Transaction transaction;
+        transaction = Transaction.createTransaction(transactionRequestDTO, conversionRate);
         transaction = repository.save(transaction);
 
         return new TransactionResponseDTO(transaction);
+    }
+
+    public List<TransactionResponseDTO> findByIdUser(Long idUser){
+        return repository.findByIdUser(idUser)
+                .stream()
+                .map(transaction -> new TransactionResponseDTO(transaction))
+                .collect(Collectors.toList());
+    }
+
+    public List<TransactionResponseDTO> findAll (){
+        return repository.findAll()
+                .stream()
+                .map(transaction -> new TransactionResponseDTO(transaction))
+                .collect(Collectors.toList());
     }
 
 }
