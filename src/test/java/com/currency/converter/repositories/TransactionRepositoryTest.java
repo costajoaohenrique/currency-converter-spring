@@ -1,6 +1,7 @@
 package com.currency.converter.repositories;
 
 import com.currency.converter.domain.Transaction;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class TransactionRepositoryTest {
 
     @Test
     @DisplayName("Should get transaction by user id")
+    @Disabled
     public void shouldGetTransactionByUserId() {
         var idUser = 15252L;
 
