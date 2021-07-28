@@ -54,6 +54,10 @@ A camada de controller é fronteira da aplicação responsável por tratar as re
 
 Utilizando a forma básica do padrão [Convetional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
+## Padrões de Resposta da API
+
+Utilizando a forma básica do padrão [RFC 7807](https://datatracker.ietf.org/doc/html/rfc7807) 
+
 ## Cobertura de Testes
 
 Adoção de cobertura de testes acima de 80% por pacote,
