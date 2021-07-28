@@ -86,6 +86,7 @@
 				<configuration>
 					<excludes>
 						<exclude>com/currency/converter/**/*DTO.*</exclude>
+						<exclude>com/currency/converter/*Application.*</exclude>
 						<exclude>**/config/*</exclude>
 					</excludes>
 				</configuration>

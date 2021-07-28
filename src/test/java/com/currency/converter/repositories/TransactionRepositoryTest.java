@@ -1,12 +1,16 @@
 package com.currency.converter.repositories;
 
+import com.currency.converter.CurrencyConverterSpringApplication;
 import com.currency.converter.domain.Transaction;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -15,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
+@ContextConfiguration(classes = CurrencyConverterSpringApplication.class)
+@AutoConfigureTestDatabase
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class TransactionRepositoryTest {
 
@@ -23,6 +29,7 @@ public class TransactionRepositoryTest {
 
     @Test
     @DisplayName("Should save transaction")
+    @Transactional
     public void shouldSaveTransaction() {
         var idUser = 15252L;
         var originCurrency = BRL;
@@ -38,7 +45,6 @@ public class TransactionRepositoryTest {
 
     @Test
     @DisplayName("Should get transaction by user id")
-    @Disabled
     public void shouldGetTransactionByUserId() {
         var idUser = 15252L;
 
